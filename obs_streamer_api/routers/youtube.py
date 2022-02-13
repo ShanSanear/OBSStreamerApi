@@ -12,6 +12,6 @@ class YoutubeModel(BaseModel):
 
 @router.post("/")
 def root():
-    return StorageModel(
+    return YoutubeModel(
         message="Hello world!"
     )
