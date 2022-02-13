@@ -8,9 +8,7 @@ main_router = APIRouter(prefix='')
 
 @main_router.get("/")
 async def root():
-
     return {"messsage": "Hello world!"}
-
 
 
 def create_app():
