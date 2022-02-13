@@ -1,5 +1,6 @@
 import asyncio
 from datetime import datetime
+from typing import Any
 
 import psutil as psutil
 from pydantic import BaseModel
@@ -25,6 +26,11 @@ class ProcessKilled(BaseModel):
     pid: int
     name: str
     date: datetime
+
+
+class OBSResult(BaseModel):
+    message: str
+    result: Any
 
 
 @router.post("/run")
@@ -65,40 +71,40 @@ async def run_obs_ws_command(command):
 
 
 @router.post("/recording/start")
-async def start_recording():
+async def start_recording() -> OBSResult:
     logger.info("Starting recording...")
     result = await run_obs_ws_command("StartRecording")
-    return {
-        "message": "Started recording",
-        "result": result
-    }
+    return OBSResult(
+        message="Started recording",
+        result=result
+    )
 
 
 @router.post("/recording/stop")
-async def stop_recording():
-    logger.info("Starting recording...")
+async def stop_recording() -> OBSResult:
+    logger.info("Stopping recording...")
     result = await run_obs_ws_command("StopRecording")
-    return {
-        "message": "Stopped recording",
-        "result": result
-    }
+    return OBSResult(
+        message="Stopped recording",
+        result=result
+    )
 
 
 @router.post("/stream/start")
-async def start_stream():
-    logger.info("Starting recording...")
+async def start_stream() -> OBSResult:
+    logger.info("Starting stream...")
     result = await run_obs_ws_command("StartStream")
-    return {
-        "message": "Started recording",
-        "result": result
-    }
+    return OBSResult(
+        message="Started stream",
+        result=result
+    )
 
 
 @router.post("/stream/stop")
-async def stop_stream():
-    logger.info("Starting recording...")
+async def stop_stream() -> OBSResult:
+    logger.info("Stopping stream...")
     result = await run_obs_ws_command("StopStream")
-    return {
-        "message": "Stopped recording",
-        "result": result
-    }
+    return OBSResult(
+        message="Stopped stream",
+        result=result
+    )
