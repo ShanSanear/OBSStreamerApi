@@ -1,7 +1,7 @@
 import uvicorn
 from fastapi import FastAPI, APIRouter
 
-from obs_streamer_api.routers import obs, storage, youtube
+from obs_streamer_api.routers import obs, storage, youtube, discord
 
 main_router = APIRouter(prefix='')
 
@@ -17,6 +17,7 @@ def create_app():
     app.include_router(obs.router)
     app.include_router(storage.router)
     app.include_router(youtube.router)
+    app.include_router(discord.router)
     return app
 
 
