@@ -1,11 +1,13 @@
 [OBS]
-OBS_FOLDER="" # Folder where OBS application is located (bin folder)
-OBS_EXE="" # Exact OBS.exe application path
-WEBSOCKET_ADDRESS="" # Address to WebSocket API to control OBS
-WEBSOCKET_PASSWORD="" # Password to WebSocket API
+FOLDER="" # Folder where OBS application is located (bin folder)
+EXE="" # Exact OBS64.exe application path
+[OBS.WEBSOCKET]
+ADDRESS="127.0.0.1" # Address to WebSocket API to control OBS
+PORT = 4444
+PASSWORD="" # Password to WebSocket API
 
 [DISCORD]
-DISCORD_UPDATE_EXE="" # Path to Update.exe of discord; actual Discord.exe constantly changes path (due to updates)
+UPDATE_EXE="" # Path to Update.exe of discord; actual Discord.exe constantly changes path (due to updates)
 
 [YOUTUBE]
 CLIENT_SECRET="" # Client secret to run YT Api
