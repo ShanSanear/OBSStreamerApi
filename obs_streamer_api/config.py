@@ -36,11 +36,17 @@ class STORAGE:
 
 
 @dataclass
+class API:
+    HOST: str
+
+
+@dataclass
 class Config:
     OBS: OBS
     DISCORD: DISCORD
     YOUTUBE: YOUTUBE
     STORAGE: STORAGE
+    API: API
 
 
 config = dacite.from_dict(Config, toml.load('config.toml'),

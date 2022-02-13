@@ -15,3 +15,6 @@ CHANNEL_ID="" # ID of the channel where recording takes place
 
 [STORAGE]
 RECORDING_FOLDER="" # UNC Address to the folder where recording is stored
+
+[API]
+HOST="127.0.0.1" # Host address required for uvicorn, 0.0.0.0 for being available from different machines in the network

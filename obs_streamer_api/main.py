@@ -1,6 +1,7 @@
 import uvicorn
 from fastapi import FastAPI, APIRouter
 
+from obs_streamer_api.config import config
 from obs_streamer_api.routers import obs, storage, youtube, discord
 
 main_router = APIRouter(prefix='')
@@ -23,7 +24,7 @@ def create_app():
 
 def main():
     app = create_app()
-    uvicorn.run(app=app)
+    uvicorn.run(app=app, host=config.API.HOST)
 
 
 if __name__ == '__main__':
