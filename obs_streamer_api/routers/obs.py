@@ -1,6 +1,5 @@
 import asyncio
 from datetime import datetime
-from pathlib import Path
 
 import psutil as psutil
 from pydantic import BaseModel
@@ -10,13 +9,11 @@ from obs_streamer_api.dependencies import get_obs_ws
 from fastapi import APIRouter, HTTPException
 from fastapi.logger import logger
 
+from obs_streamer_api.config import config
+
 router = APIRouter(
     prefix='/obs'
 )
-
-OBS_FOLDER = Path(r"D:\obs-studio\bin\64bit")
-
-OBS_EXE = OBS_FOLDER / "obs64.exe"
 
 
 class OBSState(BaseModel):
@@ -33,7 +30,7 @@ class ProcessKilled(BaseModel):
 @router.post("/run")
 async def run_obs() -> OBSState:
     try:
-        process = psutil.Popen([OBS_EXE, '--minimize-to-tray'], cwd=OBS_FOLDER)
+        process = psutil.Popen([config.OBS.EXE, '--minimize-to-tray'], cwd=config.OBS.FOLDER)
         process.name()
         return OBSState(
             pid=process.pid,
