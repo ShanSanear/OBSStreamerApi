@@ -18,3 +18,11 @@ def get_process_by_name(process_name: str) -> Optional[psutil.Process]:
         if proc.name() == process_name:
             return proc
     return None
+
+
+def kill_process_by_name_and_pid(process_name: str, pid: int):
+    for proc in psutil.process_iter():
+        if proc.name() == process_name and proc.pid == pid:
+            proc.kill()
+            return True
+    return False

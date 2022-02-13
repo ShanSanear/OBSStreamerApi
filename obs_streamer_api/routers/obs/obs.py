@@ -3,7 +3,7 @@ from datetime import datetime
 
 import psutil as psutil
 
-from obs_streamer_api.dependencies import get_obs_ws, get_process_by_name
+from obs_streamer_api.dependencies import get_obs_ws, get_process_by_name, kill_process_by_name_and_pid
 
 from fastapi import APIRouter, HTTPException
 from fastapi.logger import logger
@@ -45,14 +45,13 @@ async def run_obs() -> OBSState:
 
 @router.post("/stop")
 async def stop_obs(state: OBSState):
-    for proc in psutil.process_iter():
-        if proc.name() == state.name and proc.pid == state.pid:
-            proc.kill()
-            return ProcessKilled(
-                pid=proc.pid,
-                name=proc.name(),
-                date=datetime.utcnow()
-            )
+    is_killed = kill_process_by_name_and_pid(process_name=state.name, pid=state.pid)
+    if is_killed:
+        return ProcessKilled(
+            pid=state.pid,
+            name=state.name,
+            date=datetime.utcnow()
+        )
     raise HTTPException(status_code=404, detail="Process not found")
 
 
