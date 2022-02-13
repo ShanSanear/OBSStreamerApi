@@ -17,3 +17,7 @@ Simple API for helping streaming remotely by combining usage of Discord, OBS, Yo
 - [ ] rename last stream on channel (no way to change it automatically from OBS WebSocket API - at least for now)
   - [ ] as per storage, naming convetion must be taken into account
 
+### obs.py
+- [ ] make it possible to change scenes
+- [ ] make it possible to list scenes
+- [x] check if obs is running

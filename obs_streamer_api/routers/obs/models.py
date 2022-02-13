@@ -1,12 +1,12 @@
 from datetime import datetime
-from typing import Any
+from typing import Any, Optional
 
 from pydantic import BaseModel
 
 
 class OBSState(BaseModel):
-    pid: int
-    name: str
+    pid: Optional[int]
+    name: Optional[str]
 
 
 class ProcessKilled(BaseModel):
