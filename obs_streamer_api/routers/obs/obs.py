@@ -33,7 +33,7 @@ async def is_running() -> OBSState:
 @router.post("/run")
 async def run_obs() -> OBSState:
     try:
-        process = psutil.Popen([config.OBS.EXE, '--minimize-to-tray'], cwd=config.OBS.FOLDER)
+        process = psutil.Popen([str(config.OBS.EXE), '--minimize-to-tray'], cwd=config.OBS.FOLDER)
         process.name()
         return OBSState(
             pid=process.pid,
