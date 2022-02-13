@@ -17,6 +17,8 @@ def create_app():
     app = FastAPI()
     app.include_router(main_router)
     app.include_router(obs.router)
+    app.include_router(storage.router)
+    app.include_router(youtube.router)
     return app
 
 
