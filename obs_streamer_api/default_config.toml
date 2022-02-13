@@ -1,0 +1,15 @@
+[OBS]
+OBS_FOLDER="" # Folder where OBS application is located (bin folder)
+OBS_EXE="" # Exact OBS.exe application path
+WEBSOCKET_ADDRESS="" # Address to WebSocket API to control OBS
+WEBSOCKET_PASSWORD="" # Password to WebSocket API
+
+[DISCORD]
+DISCORD_UPDATE_EXE="" # Path to Update.exe of discord; actual Discord.exe constantly changes path (due to updates)
+
+[YOUTUBE]
+CLIENT_SECRET="" # Client secret to run YT Api
+CHANNEL_ID="" # ID of the channel where recording takes place
+
+[STORAGE]
+RECORDING_FOLDER="" # UNC Address to the folder where recording is stored
