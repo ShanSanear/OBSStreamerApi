@@ -1,9 +1,7 @@
 import asyncio
 from datetime import datetime
-from typing import Any
 
 import psutil as psutil
-from pydantic import BaseModel
 
 from obs_streamer_api.dependencies import get_obs_ws
 
@@ -11,26 +9,11 @@ from fastapi import APIRouter, HTTPException
 from fastapi.logger import logger
 
 from obs_streamer_api.config import config
+from obs_streamer_api.routers.obs.models import OBSState, ProcessKilled, OBSResult
 
 router = APIRouter(
     prefix='/obs'
 )
-
-
-class OBSState(BaseModel):
-    pid: int
-    name: str
-
-
-class ProcessKilled(BaseModel):
-    pid: int
-    name: str
-    date: datetime
-
-
-class OBSResult(BaseModel):
-    message: str
-    result: Any
 
 
 @router.post("/run")
