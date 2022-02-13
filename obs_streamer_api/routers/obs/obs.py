@@ -1,10 +1,9 @@
 import asyncio
 from datetime import datetime
 
-import fastapi
 import psutil as psutil
 
-from obs_streamer_api.dependencies import get_obs_ws
+from obs_streamer_api.dependencies import get_obs_ws, get_process_by_name
 
 from fastapi import APIRouter, HTTPException
 from fastapi.logger import logger
@@ -19,12 +18,12 @@ router = APIRouter(
 
 @router.post("/is_running")
 async def is_running() -> OBSState:
-    for proc in psutil.process_iter():
-        if proc.name() == 'obs64.exe':
-            return OBSState(
-                pid=proc.pid,
-                name=proc.name(),
-            )
+    process = get_process_by_name('obs64.exe')
+    if process:
+        return OBSState(
+            pid=process.pid,
+            name=process.name(),
+        )
     return OBSState(
         pid=None,
         name=None

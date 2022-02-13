@@ -1,3 +1,6 @@
+from typing import Optional
+
+import psutil
 import simpleobsws
 
 from obs_streamer_api.config import config
@@ -8,3 +11,10 @@ def get_obs_ws(event_loop):
                                password=config.OBS.WEBSOCKET.PASSWORD,
                                loop=event_loop)
     return obs_ws
+
+
+def get_process_by_name(process_name: str) -> Optional[psutil.Process]:
+    for proc in psutil.process_iter():
+        if proc.name() == process_name:
+            return proc
+    return None
